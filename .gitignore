@@ -127,3 +127,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+debug.py
+zerion_reports_transition.py
+/tests/fixtures.py
+/.vscode
