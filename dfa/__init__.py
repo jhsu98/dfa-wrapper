@@ -237,6 +237,14 @@ class DFA():
         request = f"dataflows/{dataflow_id}/recordsets/{recordset_id}/postactions/{action_id}"
         return self.__delete(request)
 
+    def readActionErrorMessageCount(self, dataflow_id, recordset_id, action_id):
+        request = f"dataflows/{dataflow_id}/recordsets/{recordset_id}/postactions/{action_id}/errors/count"
+        return self.__get(request)
+
+    def readActionErrorMessages(self, dataflow_id, recordset_id, action_id, offset=0, limit=1000, fields=""):
+        request = f"dataflows/{dataflow_id}/recordsets/{recordset_id}/postactions/{action_id}/errors/offset/{offset}/limit/{limit}?fields={fields}"
+        return self.__get(request)
+
     ####################################
     ## GENERIC NODE RESOURCES
     ####################################
