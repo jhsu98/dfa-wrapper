@@ -8,7 +8,7 @@ HERE = pathlib.Path(__file__).parent
 README = (HERE / "README.md").read_text()
 
 setup(name='dfa-wrapper',
-      version='0.0.1',
+      version='0.0.2',
       description='Zerion Dataflow Automation API Wrapper',
       long_description=README,
       long_description_content_type="text/markdown",
