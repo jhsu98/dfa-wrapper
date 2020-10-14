@@ -1,5 +1,5 @@
 # __init__.py
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 import logging
 logging.basicConfig(filename='app.log', level=logging.DEBUG, format='%(asctime)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S')
 import time
@@ -172,6 +172,14 @@ class DFA():
         request = f"dataflows/{dataflow_id}/recordsets/{source_recordset_id}/postactions"
         return self.__post(request,{"actionType": "pushrs", "actionOutputRecordSetId": destination_recordset_id})
 
+    ####################################
+    ## RECORD RESOURCES
+    ####################################
+
+    def deleteRecords(self, dataflow_id,recordset_id):
+        request = f"dataflows/{dataflow_id}/recordsets/{recordset_id}/records"
+        return self.__delete(request)
+
     def rerunRecords(self,dataflow_id,recordset_id,action_id="all",run_id="All"):
         request = f"dataflows/{dataflow_id}/recordsets/{recordset_id}/postactions/{action_id}/rerun/{run_id}"
         return self.__post(request,{"dataflowId": dataflow_id, "recordSetId": recordset_id, "actionId": action_id, "rerunData": run_id})
@@ -244,6 +252,10 @@ class DFA():
     def readActionErrorMessages(self, dataflow_id, recordset_id, action_id, offset=0, limit=1000, fields=""):
         request = f"dataflows/{dataflow_id}/recordsets/{recordset_id}/postactions/{action_id}/errors/offset/{offset}/limit/{limit}?fields={fields}"
         return self.__get(request)
+
+    def deleteActionErrorMessages(self, dataflow_id, recordset_id, action_id):
+        request = f"dataflows/{dataflow_id}/recordsets/{recordset_id}/postactions/{action_id}/errors/delete/All"
+        return self.__post(request,{})
 
     ####################################
     ## GENERIC NODE RESOURCES
