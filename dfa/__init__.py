@@ -52,7 +52,7 @@ class DFA():
             print(f"<{result.status_code}> {e}, {result.json()['error_message']}")
         finally:
             return result.json()
-    
+
     @Decorators.refreshToken
     def __post(self,resource,body):
         try:
@@ -64,7 +64,7 @@ class DFA():
             print(f"<{result.status_code}> {e}, {result.json()['error_message']}")
         finally:
             return result.json()
-    
+
     @Decorators.refreshToken
     def __put(self,resource,body):
         try:
@@ -76,7 +76,7 @@ class DFA():
             print(f"<{result.status_code}> {e}, {result.json()['error_message']}")
         finally:
             return result.json()
-    
+
     @Decorators.refreshToken
     def __delete(self,resource):
         try:
@@ -261,9 +261,9 @@ class DFA():
     ## GENERIC NODE RESOURCES
     ####################################
     def deactivateNode(self, dataflow_id, node_id):
-        request = f"https://dataflownode.zerionsoftware.com/zcrypt/v1.0/dataflows/{dataflow_id}/inactiveNode/nodeId/{node_id}/status/-1"
+        request = f"dataflows/{dataflow_id}/inactiveNode/nodeId/{node_id}/status/-1"
         return self.__put(request,{})
 
     def reactivateNode(self, dataflow_id, node_id):
-        request = f"https://dataflownode.zerionsoftware.com/zcrypt/v1.0/dataflows/{dataflow_id}/inactiveNode/nodeId/{node_id}/status/1"
+        request = f"dataflows/{dataflow_id}/inactiveNode/nodeId/{node_id}/status/1"
         return self.__put(request,{})
